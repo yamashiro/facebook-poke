@@ -2,33 +2,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>example</groupId>
-	<artifactId>facebook-greeting</artifactId>
+	<artifactId>facebook-poke</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0</version>
-	<name>facebook-greeting</name>
+	<name>facebook-poke</name>
 	<url>http://maven.apache.org</url>
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<configuration>
-					<downloadSources>true</downloadSources>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.1</version>
-				<configuration>
-					<executable>java</executable>
-					<mainClass>jp.dwango.makabe.MakabeSocietyAidProcessor
-					</mainClass>
-				</configuration>
-			</plugin>
-
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
@@ -37,7 +18,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>jp.dwango.makabe.MakabeSocietyAidProcessor</mainClass>
+							<mainClass>example.selenium.facebook.pokes.PokesEraser</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
