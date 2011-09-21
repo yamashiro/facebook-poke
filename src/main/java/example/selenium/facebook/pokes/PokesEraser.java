@@ -46,7 +46,30 @@ public class PokesEraser {
 				driver.close();
 			}
 		}
-
+	}
+	private void login(WebDriver driver, String email, String password,
+			AccountLaungage accountLaungage) throws PokeException {
+		typeEmail(driver, email);
+		typePassword(driver, password);
+		doLogin(driver, accountLaungage);
+	}
+	private void typeEmail(WebDriver driver, String email) {
+		WebElement elem = driver.findElement(By.id("email"));
+		elem.clear();
+		elem.sendKeys(email);
+	}
+	
+	private void typePassword(WebDriver driver, String password) {
+		WebElement elem = driver.findElement(By.id("pass"));
+		elem.clear();
+		elem.sendKeys(password);
+	}
+	
+	private void doLogin(WebDriver driver, AccountLaungage accountLaungage)
+			throws PokeException {
+		WebElement elem = driver.findElement(By.xpath("//input[@value='"
+				+ accountLaungage.gtLoginButtonValue() + "']"));
+		elem.click();
 	}
 
 	private void returnPokes(WebDriver driver, PokeStorategy pokeStorategy,
@@ -71,6 +94,16 @@ public class PokesEraser {
 			pokeCount++;
 		}
 	}
+	
+	private void showAllIfNeed(WebElement pageletPokes) {
+		if (exists(pageletPokes, By.className("showAll"))) {
+			WebElement elem = pageletPokes.findElement(By.className("showAll"));
+			elem.click();
+			// すべて表示を押して、Ajaxですべて表示がなくなるまで待つ
+			waitInvisible(pageletPokes, By.className("showAll"));
+		}
+
+	}
 
 	private void poke(WebDriver driver, WebElement pokeElem,
 			AccountLaungage accountLaungage) {
@@ -91,42 +124,6 @@ public class PokesEraser {
 		
 		//なんかPokeした後にOKボタンのダイアログが出て、自動で消えるとかいう糞仕様…OKボタンが消えるタイミングも微妙だし…待つしかない…
 		waitNotPresent(driver, By.name("ok"));
-	}
-
-	private void showAllIfNeed(WebElement pageletPokes) {
-		if (exists(pageletPokes, By.className("showAll"))) {
-			WebElement elem = pageletPokes.findElement(By.className("showAll"));
-			elem.click();
-			// すべて表示を押して、Ajaxですべて表示がなくなるまで待つ
-			waitInvisible(pageletPokes, By.className("showAll"));
-		}
-
-	}
-
-	private void login(WebDriver driver, String email, String password,
-			AccountLaungage accountLaungage) throws PokeException {
-		typeEmail(driver, email);
-		typePassword(driver, password);
-		doLogin(driver, accountLaungage);
-	}
-
-	private void doLogin(WebDriver driver, AccountLaungage accountLaungage)
-			throws PokeException {
-		WebElement elem = driver.findElement(By.xpath("//input[@value='"
-				+ accountLaungage.gtLoginButtonValue() + "']"));
-		elem.click();
-	}
-
-	private void typePassword(WebDriver driver, String password) {
-		WebElement elem = driver.findElement(By.id("pass"));
-		elem.clear();
-		elem.sendKeys(password);
-	}
-
-	private void typeEmail(WebDriver driver, String email) {
-		WebElement elem = driver.findElement(By.id("email"));
-		elem.clear();
-		elem.sendKeys(email);
 	}
 
 	private void waitPresent(final SearchContext context, final By by) {
