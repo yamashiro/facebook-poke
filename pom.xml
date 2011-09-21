@@ -2,14 +2,33 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>example</groupId>
-	<artifactId>facebook-poke</artifactId>
+	<artifactId>facebook-greeting</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0</version>
-	<name>facebook-poke</name>
+	<name>facebook-greeting</name>
 	<url>http://maven.apache.org</url>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.1</version>
+				<configuration>
+					<executable>java</executable>
+					<mainClass>jp.dwango.makabe.MakabeSocietyAidProcessor
+					</mainClass>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
@@ -18,7 +37,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>example.selenium.facebook.pokes.PokesEraser</mainClass>
+							<mainClass>jp.dwango.makabe.MakabeSocietyAidProcessor</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -46,17 +65,6 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>2.6.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-firefox-driver</artifactId>
-			<version>2.6.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-server</artifactId>
 			<version>2.6.0</version>
 		</dependency>
 		<dependency>
