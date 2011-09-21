@@ -17,6 +17,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.internal.FindsByXPath;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 import com.thoughtworks.selenium.Wait;
 
@@ -83,6 +86,7 @@ public class PokesEraser {
 
 		// すべて表示があったら押す
 		showAllIfNeed(pageletPokes);
+        //WebDriverWait バージョンで wait する。showAllIfNeedWebDriverWaitVer(driver);
 
 		int pokeCount = 0;
 		List<WebElement> pokeElems = pageletPokes.findElements(By
@@ -102,12 +106,21 @@ public class PokesEraser {
 			// すべて表示を押して、Ajaxですべて表示がなくなるまで待つ
 			waitInvisible(pageletPokes, By.className("showAll"));
 		}
-
+	}
+	
+	@SuppressWarnings("unused")
+	private void showAllIfNeedWebDriverWaitVer(WebDriver driver) {
+		if (exists(driver, By.className("showAll"))) {
+			WebElement elem = driver.findElement(By.className("showAll"));
+			elem.click();
+			// すべて表示を押して、Ajaxですべて表示がなくなるまで待つ
+			waitInvisible(driver, By.className("showAll"));
+		}
 	}
 
 	private void poke(WebDriver driver, WebElement pokeElem,
 			AccountLaungage accountLaungage) {
-		// あいさつを返す要素をクリックする
+		// 「あいさつを返す」要素をクリックする
 		pokeElem.click();
 
 		// あいさつをするボタンが出るのを待つ
@@ -167,8 +180,13 @@ public class PokesEraser {
 				return false == elem.isDisplayed();
 			}
 		};
-
 		wait.wait("Element exists", WAIT_SECOND * 1000);
+	}
+	
+	//非表示になるまで待つ。
+	private void waitInvisible(WebDriver driver, By by) {
+		org.openqa.selenium.support.ui.Wait<WebDriver> wait = new WebDriverWait(driver, WAIT_SECOND);
+		wait.until(invisibilityOfElementLocated(by));
 	}
 
 	private boolean exists(SearchContext searchContext, By by) {
