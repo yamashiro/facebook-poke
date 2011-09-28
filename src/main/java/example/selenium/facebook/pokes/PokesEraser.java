@@ -24,7 +24,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 import com.thoughtworks.selenium.Wait;
 
 /**
- * ‚±‚ñ‚É‚¿‚í‚±‚ñ‚É‚¿‚í
+ * ã“ã‚“ã«ã¡ã‚ã“ã‚“ã«ã¡ã‚
  */
 public class PokesEraser {
 	private static boolean DEBUG = false;
@@ -38,10 +38,10 @@ public class PokesEraser {
 			driver = driverStorategy.getDriver();
 			driver.get("http://www.facebook.com/");
 
-			// ƒƒOƒCƒ“‚µ‚Ü‚Á‚¹
+			// ãƒ­ã‚°ã‚¤ãƒ³ã—ã¾ã£ã›
 			login(driver, email, password, accountLaungage);
 
-			// ‚ ‚¢‚³‚Â‚µ‚Ü‚­‚é
+			// ã‚ã„ã•ã¤ã—ã¾ãã‚‹
 			returnPokes(driver, pokeStorategy, accountLaungage);
 
 		} finally {
@@ -78,15 +78,15 @@ public class PokesEraser {
 	private void returnPokes(WebDriver driver, PokeStorategy pokeStorategy,
 			AccountLaungage accountLaungage) {
 		if (false == exists(driver, By.id("pagelet_pokes"))) {
-			// ˆ¥A‚Ìpagelet‚ª‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+			// æŒ¨æ‹¶ã®pageletãŒãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 			return;
 		}
 
 		WebElement pageletPokes = driver.findElement(By.id("pagelet_pokes"));
 
-		// ‚·‚×‚Ä•\¦‚ª‚ ‚Á‚½‚ç‰Ÿ‚·
+		// ã™ã¹ã¦è¡¨ç¤ºãŒã‚ã£ãŸã‚‰æŠ¼ã™
 		showAllIfNeed(pageletPokes);
-        //WebDriverWait ƒo[ƒWƒ‡ƒ“‚Å wait ‚·‚éBshowAllIfNeedWebDriverWaitVer(driver);
+        //WebDriverWait ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ wait ã™ã‚‹ã€‚showAllIfNeedWebDriverWaitVer(driver);
 
 		int pokeCount = 0;
 		List<WebElement> pokeElems = pageletPokes.findElements(By
@@ -103,7 +103,7 @@ public class PokesEraser {
 		if (exists(pageletPokes, By.className("showAll"))) {
 			WebElement elem = pageletPokes.findElement(By.className("showAll"));
 			elem.click();
-			// ‚·‚×‚Ä•\¦‚ğ‰Ÿ‚µ‚ÄAAjax‚Å‚·‚×‚Ä•\¦‚ª‚È‚­‚È‚é‚Ü‚Å‘Ò‚Â
+			// ã™ã¹ã¦è¡¨ç¤ºã‚’æŠ¼ã—ã¦ã€Ajaxã§ã™ã¹ã¦è¡¨ç¤ºãŒãªããªã‚‹ã¾ã§å¾…ã¤
 			waitInvisible(pageletPokes, By.className("showAll"));
 		}
 	}
@@ -113,17 +113,17 @@ public class PokesEraser {
 		if (exists(driver, By.className("showAll"))) {
 			WebElement elem = driver.findElement(By.className("showAll"));
 			elem.click();
-			// ‚·‚×‚Ä•\¦‚ğ‰Ÿ‚µ‚ÄAAjax‚Å‚·‚×‚Ä•\¦‚ª‚È‚­‚È‚é‚Ü‚Å‘Ò‚Â
+			// ã™ã¹ã¦è¡¨ç¤ºã‚’æŠ¼ã—ã¦ã€Ajaxã§ã™ã¹ã¦è¡¨ç¤ºãŒãªããªã‚‹ã¾ã§å¾…ã¤
 			waitInvisible(driver, By.className("showAll"));
 		}
 	}
 
 	private void poke(WebDriver driver, WebElement pokeElem,
 			AccountLaungage accountLaungage) {
-		// u‚ ‚¢‚³‚Â‚ğ•Ô‚·v—v‘f‚ğƒNƒŠƒbƒN‚·‚é
+		// ã€Œã‚ã„ã•ã¤ã‚’è¿”ã™ã€è¦ç´ ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹
 		pokeElem.click();
 
-		// ‚ ‚¢‚³‚Â‚ğ‚·‚éƒ{ƒ^ƒ“‚ªo‚é‚Ì‚ğ‘Ò‚Â
+		// ã‚ã„ã•ã¤ã‚’ã™ã‚‹ãƒœã‚¿ãƒ³ãŒå‡ºã‚‹ã®ã‚’å¾…ã¤
 		By pokeButtonBy = new ByValue(accountLaungage.getPokeButtonValue());
 		if (DEBUG) {
 			pokeButtonBy = By.name("cancel");
@@ -132,10 +132,10 @@ public class PokesEraser {
 
 		WebElement button = driver.findElement(pokeButtonBy);
 		button.click();
-		// ƒ{ƒ^ƒ“‚ª‚È‚­‚È‚Á‚Ä‚éiAjax‚Åˆ—‚ªI‚í‚Á‚½‚±‚Æ‚ğŠm”F)
+		// ãƒœã‚¿ãƒ³ãŒãªããªã£ã¦ã‚‹ï¼ˆAjaxã§å‡¦ç†ãŒçµ‚ã‚ã£ãŸã“ã¨ã‚’ç¢ºèª)
 		waitNotPresent(driver, pokeButtonBy);
 		
-		//‚È‚ñ‚©Poke‚µ‚½Œã‚ÉOKƒ{ƒ^ƒ“‚Ìƒ_ƒCƒAƒƒO‚ªo‚ÄA©“®‚ÅÁ‚¦‚é‚Æ‚©‚¢‚¤•³d—lcOKƒ{ƒ^ƒ“‚ªÁ‚¦‚éƒ^ƒCƒ~ƒ“ƒO‚à”÷–­‚¾‚µc‘Ò‚Â‚µ‚©‚È‚¢c
+		//ãªã‚“ã‹Pokeã—ãŸå¾Œã«OKãƒœã‚¿ãƒ³ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒå‡ºã¦ã€è‡ªå‹•ã§æ¶ˆãˆã‚‹ã¨ã‹ã„ã†ç³ä»•æ§˜â€¦OKãƒœã‚¿ãƒ³ãŒæ¶ˆãˆã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚‚å¾®å¦™ã ã—â€¦å¾…ã¤ã—ã‹ãªã„â€¦
 		waitNotPresent(driver, By.name("ok"));
 	}
 
@@ -171,7 +171,7 @@ public class PokesEraser {
 		wait.wait("Element not exists", WAIT_SECOND * 1000);
 	}
 
-	// ”ñ•\¦‚É‚È‚é‚Ü‚Å‚Ü‚Â
+	// éè¡¨ç¤ºã«ãªã‚‹ã¾ã§ã¾ã¤
 	private void waitInvisible(final SearchContext context, final By by) {
 		Wait wait = new Wait() {
 			@Override
@@ -183,7 +183,7 @@ public class PokesEraser {
 		wait.wait("Element exists", WAIT_SECOND * 1000);
 	}
 	
-	//”ñ•\¦‚É‚È‚é‚Ü‚Å‘Ò‚ÂB
+	//éè¡¨ç¤ºã«ãªã‚‹ã¾ã§å¾…ã¤ã€‚
 	private void waitInvisible(WebDriver driver, By by) {
 		org.openqa.selenium.support.ui.Wait<WebDriver> wait = new WebDriverWait(driver, WAIT_SECOND);
 		wait.until(invisibilityOfElementLocated(by));
@@ -271,23 +271,23 @@ public class PokesEraser {
 
 	private static Options getCommandLineOptions() {
 		Options opt = new Options();
-		Option userOption = new Option("email", true, "emailB•K{‚Å‚·B");
+		Option userOption = new Option("email", true, "emailã€‚å¿…é ˆã§ã™ã€‚");
 		userOption.setRequired(true);
 		opt.addOption(userOption);
-		Option passwordOption = new Option("password", true, "ƒpƒXƒ[ƒh‚Å‚·B•K{‚Å‚·B");
+		Option passwordOption = new Option("password", true, "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã§ã™ã€‚å¿…é ˆã§ã™ã€‚");
 		passwordOption.setRequired(true);
 		opt.addOption(passwordOption);
-		opt.addOption("help", false, "ƒwƒ‹ƒv‚ª•\¦‚³‚ê‚Ü‚·");
-		opt.addOption("debug", false, "ƒfƒoƒbƒOƒ‚[ƒh‚ÅÀs‚µ‚Ü‚·Bƒ|ƒCƒ“ƒg‚Ì•t—^‚Ì’¼‘O‚Ü‚ÅÀs‚µ‚Ü‚·B");
+		opt.addOption("help", false, "ãƒ˜ãƒ«ãƒ—ãŒè¡¨ç¤ºã•ã‚Œã¾ã™");
+		opt.addOption("debug", false, "ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã§å®Ÿè¡Œã—ã¾ã™ã€‚ãƒã‚¤ãƒ³ãƒˆã®ä»˜ä¸ã®ç›´å‰ã¾ã§å®Ÿè¡Œã—ã¾ã™ã€‚");
 		String browserNames = StringUtils.join(DriverStorategy.values(), ",");
-		opt.addOption("browser", true, "ƒuƒ‰ƒEƒU‚ğw’è‚µ‚Ü‚·BƒfƒtƒHƒ‹ƒg‚Í firefox ‚Å‚·B"
+		opt.addOption("browser", true, "ãƒ–ãƒ©ã‚¦ã‚¶ã‚’æŒ‡å®šã—ã¾ã™ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ firefox ã§ã™ã€‚"
 				+ browserNames);
 
 		String langages = StringUtils.join(AccountLaungage.values(), ",");
-		opt.addOption("laungage", true, "Œ¾Œê‚ğw’è‚µ‚Ü‚·BƒfƒtƒHƒ‹ƒg‚Í japanese ‚Å‚·B"
+		opt.addOption("laungage", true, "è¨€èªã‚’æŒ‡å®šã—ã¾ã™ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ japanese ã§ã™ã€‚"
 				+ langages);
 
-		opt.addOption("maxCount", true, "ˆ¥A‚ÌÅ‘å‰ñ”‚ğ“ü—Í‚µ‚Ü‚·BƒfƒtƒHƒ‹ƒg‚Å‚Í‚·‚×‚Ä‚Ìˆ¥A‚É‚Â‚¢‚Ä•Ô“š‚µ‚Ü‚·");
+		opt.addOption("maxCount", true, "æŒ¨æ‹¶ã®æœ€å¤§å›æ•°ã‚’å…¥åŠ›ã—ã¾ã™ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ã™ã¹ã¦ã®æŒ¨æ‹¶ã«ã¤ã„ã¦è¿”ç­”ã—ã¾ã™");
 
 		return opt;
 	}
@@ -370,9 +370,9 @@ enum PokeStorategy {
 }
 
 enum AccountLaungage {
-	// japanese("ƒƒOƒCƒ“", "‚ ‚¢‚³‚Â‚ğ•Ô‚·", "‚·‚×‚Ä•\¦"), english("Log In", "Poke Back",
+	// japanese("ãƒ­ã‚°ã‚¤ãƒ³", "ã‚ã„ã•ã¤ã‚’è¿”ã™", "ã™ã¹ã¦è¡¨ç¤º"), english("Log In", "Poke Back",
 	// "Show all");
-	japanese("ƒƒOƒCƒ“", "‚ ‚¢‚³‚Â‚·‚é"), english("Log In", "Poke");
+	japanese("ãƒ­ã‚°ã‚¤ãƒ³", "ã‚ã„ã•ã¤ã™ã‚‹"), english("Log In", "Poke");
 
 	private String loginButtonValue;
 	private String pokeButtonValue;
